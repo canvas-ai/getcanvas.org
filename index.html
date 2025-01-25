@@ -151,28 +151,29 @@
             const tagline = document.querySelector('.tagline');
 
             fetch('https://my.cnvs.ai/rest/ping')
-                .then(response => {
-                    if (response.status == "ok") {
-                        dot.className = 'status-dot online';
-                        text.textContent = 'Canvas Server Online';
-                        tagline.textContent = `${response?.productName} v${response?.version}`
-                        // Check again in 10 seconds if online
-                        setTimeout(checkStatus, 10000);
-                    } else {
-                        dot.className = 'status-dot offline';
-                        text.textContent = 'Canvas Server Offline';
-                        tagline.textContent = 'Unable to fetch server details'
-                        // Check again in 5 seconds if offline
-                        setTimeout(checkStatus, 5000);
-                    }
-                })
-                .catch(error => {
-                    dot.className = 'status-dot unreachable';
-                    text.textContent = 'Canvas Server Unreachable';
-                    tagline.textContent = 'Unable to fetch server details'
-                    // Check again in 5 seconds if unreachable
+            .then(response => response.json())  // Parse the JSON response
+            .then(data => {
+                if (data.status === 'ok') {
+                    dot.className = 'status-dot online';
+                    text.textContent = 'Canvas Server Online';
+                    tagline.textContent = `${data.productName} v${data.version}`;
+                    // Check again in 10 seconds if online
+                    setTimeout(checkStatus, 10000);
+                } else {
+                    dot.className = 'status-dot offline';
+                    text.textContent = 'Canvas Server Offline';
+                    tagline.textContent = 'Unable to fetch server details';
+                    // Check again in 5 seconds if offline
                     setTimeout(checkStatus, 5000);
-                });
+                }
+            })
+            .catch(error => {
+                dot.className = 'status-dot unreachable';
+                text.textContent = 'Canvas Server Unreachable';
+                tagline.textContent = 'Unable to fetch server details';
+                // Check again in 5 seconds if unreachable
+                setTimeout(checkStatus, 5000);
+            });
         }
 
         // Initial check
