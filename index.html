@@ -135,11 +135,11 @@
 
                     // Schedule next update
                     setTimeout(updateText, headerLoopTimeout * 1000);
-                }, 500); // Wait for fade out to complete
+                }, 300); // Wait for fade out to complete
             }
 
             // Add CSS transitions
-            loopElement.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+            loopElement.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
 
             updateText();
         }
