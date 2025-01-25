@@ -16,7 +16,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0;
 }
 
 .card {
@@ -24,9 +24,19 @@ body {
   width: 95vw;
   height: 95vh;
   background: #fff;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  .card {
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .card-left {
@@ -74,6 +84,7 @@ body {
 }
 
 .card-right {
+  max-width: 100%;
   position: relative;
   flex: 1;
   display: flex;
@@ -121,7 +132,7 @@ h1 {
   color: #000;
   font-size: 0.875rem;
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;
   border-radius: 0.375rem;
   border: 1px solid #e2e8f0;
   background-color: #fff;
@@ -156,12 +167,22 @@ h1 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .project-link p {
   font-size: 0.875rem;
   color: #666;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.project-link div {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
 }
 
 .tools-container {
@@ -208,7 +229,7 @@ h1 {
 
 .login-link {
     position: absolute;
-    top: 1.5rem;
+    top: 0.5rem;
     right: 2rem;
     text-decoration: none;
     color: #000;
@@ -248,22 +269,25 @@ h1 {
     flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
-    .login-link {
-        top: 2rem;
-        right: 2rem;
-    }
-}
-
 .status-indicator {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 0.5rem;
     right: 2rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
     color: #666;
+}
+
+
+@media (min-width: 768px) {
+  .status-indicator {
+    bottom: 1.5rem;
+  }
+  .login-link {
+      top: 1.5rem;
+  }
 }
 
 .status-dot {
