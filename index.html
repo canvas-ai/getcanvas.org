@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Projects</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Canvas | Contextualize your unstructured Universe!</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@
                     <span class="logo-text">Canvas</span>
                 </a>
                 <div class="tagline">
-                    Contextualize your unstructured Universe!
+
                 </div>
             </div>
 
@@ -25,8 +25,8 @@
                 <a href="https://my.cnvs.ai/login" class="login-link" target="_blank" rel="noopener noreferrer">Login</a>
                 <div class="content">
                     <div class="header">
-                        <h1>Canvas Tools</h1>
-                        <p class="subtitle">Explore our ecosystem of open-source tools</p>
+                        <h1>Organize your <span id="loop">Universe://</span></h1>
+                        <p class="subtitle">Into manageable, understandable, low-entropy Contexts :)</p>
                     </div>
 
                     <div class="projects">
@@ -35,8 +35,8 @@
                                 <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path>
                             </svg>
                             <div>
-                                <h3>Register Canvas Account</h3>
-                                <p>Create your account and start organizing</p>    
+                                <h3>Register a Canvas account</h3>
+                                <p>Create a account and start organizing</p>
                             </div>
                         </a>
 
@@ -45,8 +45,8 @@
                                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                             </svg>
                             <div>
-                                <h3>Run Canvas Server</h3>
-                                <p>Set up your own Canvas instance locally</p>
+                                <h3>Run Canvas Server locally</h3>
+                                <p>Set up your own Canvas instance (docker)</p>
                             </div>
                         </a>
 
@@ -66,7 +66,7 @@
                             </svg>
                             <div>
                                 <h3>CLI Client</h3>
-                                <p>Command-line interface for Canvas</p>
+                                <p>Simple command-line interface for Canvas</p>
                             </div>
                         </a>
 
@@ -76,7 +76,7 @@
                             </svg>
                             <div>
                                 <h3>Electron UI</h3>
-                                <p>Desktop application for Canvas</p>
+                                <p>Context-aware, cross-platform Desktop overlay</p>
                             </div>
                         </a>
                     </div>
@@ -85,7 +85,7 @@
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="github-icon">
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                         </svg>
-                        <span>GitHub</span>
+                        <span>Visit us on GitHub</span>
                     </a>
                 </div>
                 <div class="status-indicator">
@@ -96,27 +96,73 @@
         </div>
     </div>
     <script>
+        const headerArray = [
+            'Universe://',
+            'Workspace://',
+            'Workflows://',
+        ];
+
+        const headerLoopTimeout = 4;
+        const headerLoopContainerID = 'loop'
+
+        function headerLoop() {
+            let currentIndex = 0;
+            const loopElement = document.getElementById(headerLoopContainerID);
+
+            function updateText() {
+                // Fade out
+                loopElement.style.opacity = '0';
+                loopElement.style.transform = 'translateY(10px)';
+
+                setTimeout(() => {
+                    // Update text while invisible
+                    loopElement.textContent = headerArray[currentIndex];
+
+                    // Fade in
+                    loopElement.style.opacity = '1';
+                    loopElement.style.transform = 'translateY(0)';
+
+                    // Update index for next iteration
+                    currentIndex = (currentIndex + 1) % headerArray.length;
+
+                    // Schedule next update
+                    setTimeout(updateText, headerLoopTimeout * 1000);
+                }, 500); // Wait for fade out to complete
+            }
+
+            // Add CSS transitions
+            loopElement.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+
+            updateText();
+        }
+
+        // Start the header loop
+        headerLoop();
+
+        // Start the header loop
+        headerLoop();
+
         function checkStatus() {
             const dot = document.querySelector('.status-dot');
             const text = document.querySelector('.status-text');
-            
+
             fetch('https://my.cnvs.ai/rest/ping')
                 .then(response => {
                     if (response.ok) {
                         dot.className = 'status-dot online';
-                        text.textContent = 'Online';
+                        text.textContent = 'Canvas Server Online';
                         // Check again in 10 seconds if online
                         setTimeout(checkStatus, 10000);
                     } else {
                         dot.className = 'status-dot offline';
-                        text.textContent = 'Offline';
+                        text.textContent = 'Canvas Server Offline';
                         // Check again in 5 seconds if offline
                         setTimeout(checkStatus, 5000);
                     }
                 })
                 .catch(error => {
                     dot.className = 'status-dot unreachable';
-                    text.textContent = 'Server Unreachable';
+                    text.textContent = 'Canvas Server Unreachable';
                     // Check again in 5 seconds if unreachable
                     setTimeout(checkStatus, 5000);
                 });

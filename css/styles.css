@@ -69,7 +69,7 @@ body {
   position: absolute;
   bottom: 2rem;
   left: 2rem;
-  font-size: 1.125rem;
+  font-size: 0.8rem;
   max-width: 80%;
 }
 
@@ -229,4 +229,10 @@ h1 {
 
 .status-dot.unreachable {
   background-color: #ef4444;
+}
+
+#loop {
+  display: inline-block;
+  opacity: 1;
+  transform: translateY(0);
 }
