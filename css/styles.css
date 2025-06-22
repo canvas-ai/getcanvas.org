@@ -46,6 +46,7 @@ body {
   position: relative;
   color: #fff;
   padding: 2rem;
+  padding-right: 0;
 }
 
 @media (min-width: 768px) {
