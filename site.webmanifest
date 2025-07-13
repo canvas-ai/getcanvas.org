@@ -3,19 +3,34 @@
     "short_name": "Canvas",
     "icons": [
       {
-        "src": "/images/android-chrome-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
+        "src": "/images/logo-wr_1024x1024.png",
+        "sizes": "1024x1024",
+        "type": "image/png",
+        "purpose": "any maskable"
       },
       {
         "src": "/images/android-chrome-512x512.png",
         "sizes": "512x512",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any"
       },
       {
-        "src": "/favicon.png",
+        "src": "/images/logo-wr_256x256.png",
+        "sizes": "256x256",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/images/logo-wr_128x128.png",
+        "sizes": "128x128",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/images/logo-wr_64x64.png",
         "sizes": "64x64",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any"
       }
     ],
     "theme_color": "#ffffff",
