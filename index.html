@@ -155,13 +155,14 @@
             const text = document.querySelector('.status-text');
             const tagline = document.querySelector('.tagline');
 
-            fetch('https://my.cnvs.ai/rest/ping')
+            fetch('https://my.cnvs.ai/rest/v2/ping')
             .then(response => response.json())  // Parse the JSON response
             .then(data => {
-                if (data.status === 'ok') {
+                console.log(data);
+                if (data.status === 'success' && data.statusCode === 200) {
                     dot.className = 'status-dot online';
                     text.textContent = 'Canvas Server Online';
-                    tagline.textContent = `${data.productName} v${data.version}`;
+                    tagline.textContent = `${data.payload.appName} v${data.payload.version}`;
                     // Check again in 10 seconds if online
                     setTimeout(checkStatus, 10000);
                 } else {
